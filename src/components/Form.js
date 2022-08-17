@@ -116,7 +116,7 @@ class Form extends Component {
             <div className="formDiv">    
             {!this.state.clicked ? 
                 <>
-                    <h3 style={{ textAlign: "center" }} >Admission Form </ h3>    
+                    <h3 className="heading" style={{ textAlign: "center" }} >Student Form </ h3>    
                     <div>    
                         <form>    
                             <div>    

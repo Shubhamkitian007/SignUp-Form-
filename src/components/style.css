@@ -57,5 +57,9 @@ input[type=text], select{
     height: 4em;
     font-size: 15px;
     background-color: #45a049;
+    cursor: pointer;
+}
 
+.heading{
+    font-size:xx-large;
 }
