@@ -28,7 +28,7 @@ input[type=text], select{
     font-size: medium;
 }
 
-input[type=submit] {    
+.btn {    
     width: 50%;  
     height: 3em;  
     background-color: #b93b0d;    
@@ -41,7 +41,7 @@ input[type=submit] {
     cursor: pointer;    
 }    
         
-input[type=submit]:hover {    
+.btn:hover {    
     background-color: #45a049;    
     color: black;
 }    
@@ -50,4 +50,12 @@ input[type=submit]:hover {
     border-color: #a94442 !important;    
     color: #a94442 !important;    
     margin-bottom: 15px;    
+}
+
+.dynamic_button{
+    width: 25%;
+    height: 4em;
+    font-size: 15px;
+    background-color: #45a049;
+
 }

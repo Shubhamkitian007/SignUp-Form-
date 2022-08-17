@@ -1,6 +1,7 @@
 import React, { Component } from "react";    
 import './style.css'    
-    
+import StudentData from "./StudentData";
+
 class Form extends Component {    
     constructor(props) {    
         super(props);    
@@ -9,7 +10,8 @@ class Form extends Component {
             emailId: '',    
             dob: '',    
             gender: 'select',    
-            phoneNumber: '',    
+            phoneNumber: '', 
+            array: [],   
             formErrors: {}    
         };    
     
@@ -79,13 +81,31 @@ class Form extends Component {
         this.setState({ [name]: value });    
     }    
     
+    toggleFormClick = () => {
+        this.setState({clicked:!this.state.clicked})
+    };
+
     handleSubmit = (e) => {    
         e.preventDefault();    
     
-        if (this.handleFormValidation()) {    
-            alert('You have been successfully registered.')    
-            this.setState(this.initialState)    
-        }    
+        const temp_obj = {
+            studName:this.state.studName,
+            emailId:this.state.emailId,
+            dob:this.state.dob,
+            gender:this.state.gender,
+            phoneNumber:this.state.phoneNumber,
+        };
+
+        this.state.array.push(temp_obj);
+
+        this.setState({
+            clicked: true,
+            studName: "",
+            emailId: "",
+            dob: "",
+            gender: "",
+            phoneNumber: ""
+        });
     }    
     
     render() {    
@@ -94,23 +114,25 @@ class Form extends Component {
     
         return (    
             <div className="formDiv">    
-                <h3 style={{ textAlign: "center" }} >Admission Form </ h3>    
-                <div>    
-                    <form onSubmit={this.handleSubmit}>    
-                        <div>    
-                            <label htmlFor="studName">Name</label>    
-                            <input type="text" name="studName"    
-                                value={this.state.studName}    
-                                onChange={this.handleChange}    
-                                placeholder="Your name.."    
-                                className={studNameErr ? ' showError' : ''} />    
-                            {studNameErr &&    
-                                <div style={{ color: "red", paddingBottom: 10 }}>{studNameErr}</div>    
-                            }    
+            {!this.state.clicked ? 
+                <>
+                    <h3 style={{ textAlign: "center" }} >Admission Form </ h3>    
+                    <div>    
+                        <form>    
+                            <div>    
+                                <label htmlFor="studName">Name</label>    
+                                <input type="text" name="studName"    
+                                    value={this.state.studName}    
+                                    onChange={this.handleChange}    
+                                    placeholder="Your name.."    
+                                    className={studNameErr ? ' showError' : ''} />    
+                                    {studNameErr &&    
+                                    <div style={{ color: "red", paddingBottom: 10 }}>{studNameErr}</div>    
+                                }       
     
-                        </div>    
-                        <div>    
-                            <label htmlFor="emailId">Email Id</label>    
+                            </div>    
+                            <div>    
+                                <label htmlFor="emailId">Email Id</label>    
                             <input type="text" name="emailId"    
                                 value={this.state.emailId}    
                                 onChange={this.handleChange}    
@@ -120,47 +142,50 @@ class Form extends Component {
                                 <div style={{ color: "red", paddingBottom: 10 }}>{emailIdErr}</div>    
                             }    
     
-                        </div>    
-                        <div>    
-                            <label htmlFor="text">Birth Date</label>    
-                            <input type="text" name="dob"    
-                                value={this.state.dob}    
-                                onChange={this.handleChange}    
-                                placeholder="DD/MM/YYYY.."    
-                                className={dobErr ? ' showError' : ''} />    
-                            {dobErr &&    
-                                <div style={{ color: "red", paddingBottom: 10 }}>{dobErr}</div>    
-                            }    
-                        </div>    
-                        <div>    
-                            <label htmlFor="gender">Gender</label>    
-                            <select name="gender" onChange={this.handleChange}    
-                                className={genderErr ? ' showError' : ''}    
-                                value={this.state.gender} >    
-                                <option value="select">--Select--</option>    
-                                <option value="male">Male</option>    
-                                <option value="female">Female</option>    
-                                <option value="Other">Other</option>    
-                            </select>    
-                            {genderErr &&    
-                                <div style={{ color: "red", paddingBottom: 10 }}>{genderErr}</div>    
-                            }    
-                        </div>    
-                        <div>    
-                            <label htmlFor="phoneNumber">Phone Number</label>    
-                            <input type="text" name="phoneNumber"    
-                                onChange={this.handleChange}    
-                                value={this.state.phoneNumber}    
-                                placeholder="Your phone number.."    
-                                className={phoneNumberErr ? ' showError' : ''} />    
-                            {phoneNumberErr &&    
-                                <div style={{ color: "red", paddingBottom: 10 }}>{phoneNumberErr}</div>    
-                            }    
-                        </div>    
-                        <input type="submit" value="Submit" />    
-                    </form>    
-                </div>    
-            </div >    
+                            </div>    
+                            <div>    
+                                <label htmlFor="text">Birth Date</label>    
+                                <input type="text" name="dob"    
+                                    value={this.state.dob}    
+                                    onChange={this.handleChange}    
+                                    placeholder="DD/MM/YYYY.."    
+                                    className={dobErr ? ' showError' : ''} />    
+                                {dobErr &&    
+                                    <div style={{ color: "red", paddingBottom: 10 }}>{dobErr}</div>    
+                                }    
+                            </div>    
+                            <div>    
+                                <label htmlFor="gender">Gender</label>    
+                                <select name="gender" onChange={this.handleChange}    
+                                    className={genderErr ? ' showError' : ''}    
+                                    value={this.state.gender} >    
+                                    <option value="select">--Select--</option>    
+                                    <option value="male">Male</option>    
+                                    <option value="female">Female</option>    
+                                    <option value="Other">Other</option>    
+                                </select>    
+                                {genderErr &&    
+                                    <div style={{ color: "red", paddingBottom: 10 }}>{genderErr}</div>    
+                                }    
+                            </div>    
+                            <div>    
+                                <label htmlFor="phoneNumber">Phone Number</label>    
+                                <input type="text" name="phoneNumber"    
+                                    onChange={this.handleChange}    
+                                    value={this.state.phoneNumber}    
+                                    placeholder="Your phone number.."    
+                                    className={phoneNumberErr ? ' showError' : ''} />    
+                                {phoneNumberErr &&    
+                                    <div style={{ color: "red", paddingBottom: 10 }}>{phoneNumberErr}</div>    
+                                }    
+                            </div>    
+                            <button className="btn" type="submit" onClick={this.handleSubmit.bind(this)}> Submit </button>    
+                        </form>    
+                    </div>    
+                </> :
+                    <StudentData data={this.state.array} toggleFunc={this.toggleFormClick} />
+                    }
+            </div>    
         )    
     }    
 }    
