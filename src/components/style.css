@@ -1,4 +1,4 @@
-.formDiv { 
+.formDiv, .data_container { 
     width: 30%;   
     align-items: center;
     justify-content: center;

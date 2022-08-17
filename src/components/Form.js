@@ -34,7 +34,7 @@ class Form extends Component {
             formIsValid = false;    
             formErrors["emailIdErr"] = "Email id is required.";    
         }    
-        else if (!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailId))) {    
+        else if (!6(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailId))) {    
     
             formIsValid = false;    
             formErrors["emailIdErr"] = "Invalid email id.";    
@@ -160,8 +160,8 @@ class Form extends Component {
                                     className={genderErr ? ' showError' : ''}    
                                     value={this.state.gender} >    
                                     <option value="select">--Select--</option>    
-                                    <option value="male">Male</option>    
-                                    <option value="female">Female</option>    
+                                    <option value="Male">Male</option>    
+                                    <option value="Female">Female</option>    
                                     <option value="Other">Other</option>    
                                 </select>    
                                 {genderErr &&    

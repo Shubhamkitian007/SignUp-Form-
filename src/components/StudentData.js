@@ -8,7 +8,7 @@ class StudentData extends Component{
     }
     render(){
         return (<>
-            <h1>Employee Data</h1>
+            <h1>Student Information</h1>
             <div id="data_container">
                 {this.props.data.map( (ele) => {
                     // console.log(ele);
